@@ -43,8 +43,7 @@ class Player extends Entity {
         //win condition
         if(this.yBorder){
             alert("win!");
-            resetPlayerPos();
-            // resetEnemies();
+            resetGame();
         }
     }
 
@@ -72,9 +71,18 @@ class Player extends Entity {
 
 const player = new Player;
 
-function resetPlayerPos() {
+function resetGame() {
+    //reset player position
     player.x = 200;
     player.y = 400;
+
+    //reset enemies
+    allEnemies=[];
+    allEnemies.push(
+        new Enemy(-175, 60, 100),
+        new Enemy(-100, 150, 20),
+        new Enemy(-300, 230, 15)
+    );
 }
 
 class Enemy extends Entity {
@@ -114,17 +122,8 @@ class Enemy extends Entity {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-let enemy1 = new Enemy(-175, 60, 100);
-let enemy2 = new Enemy(-100, 150, 20);
-let enemy3 = new Enemy(-300, 230, 15);
-let allEnemies = [enemy1, enemy2, enemy3];
+let allEnemies = [];
 
-// function resetEnemies(){
-//     enemy1 = new Enemy(-135, 60, 100);
-//     enemy2 = new Enemy(-190, 150, 20);
-//     enemy3 = new Enemy(-80, 230, 15);
-//     allEnemies = [enemy1, enemy2, enemy3];
-// }
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
