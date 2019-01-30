@@ -14,32 +14,13 @@ class Entity {
         // all computers.
         this.xBorder = this.x > 500;
         this.yBorder = this.y <= 0;
-        
-        
-        // function checkCollisions() { //code adapted from MDN: https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection
-            for (let enemy of allEnemies) {
-                if (player.x < enemy.x+enemy.width &&
-                    player.x + player.width > enemy.x &&
-                    player.y < enemy.y + enemy.height &&
-                    player.height + player.y > enemy.y){
-                        return true;
-                        alert("collided");
-                    } 
-                else {
-                    return false;
-                }
-            }
-        // }   
-        }
-    
+    }
     // Draw the enemy on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
 }
-
-
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -92,10 +73,11 @@ class Player extends Entity {
 
 const player = new Player;
 
-function resetPlayerPos(player) {
-    this.x = 200;
-    this.y = 400;
+function resetPlayerPos() {
+    player.x = 200;
+    player.y = 400;
 }
+
 class Enemy extends Entity {
     constructor(x, y, speed) {
         super();
@@ -113,11 +95,23 @@ class Enemy extends Entity {
         } else {
             this.x += dt * this.speed;
         }
+
+        //collision detection 
+            //code adapted from MDN: https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection
+
+        if(player.x < this.x + this.width &&            
+            player.x + player.width > this.x &&
+            player.y <this.y + this.height &&
+            player.y + player.height > this.y){
+                resetPlayerPos(player);
+            }
     }
 
     render() {
         super.render();
     }
+
+
 }
 
 // Now instantiate your objects.
