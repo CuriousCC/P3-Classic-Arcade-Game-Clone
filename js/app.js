@@ -41,7 +41,7 @@ class Player extends Entity {
         super.update();
 
         //win condition
-        if(this.yBorder){
+        if (this.yBorder) {
             alert("win!");
             resetGame();
         }
@@ -77,7 +77,7 @@ class Enemy extends Entity {
         this.sprite += "enemy-bug.png";
         this.x = x;
         this.y = y;
-        this.speed=speed;
+        this.speed = speed;
         this.height = 50;
         this.width = 75;
     }
@@ -87,18 +87,18 @@ class Enemy extends Entity {
         if (this.xBorder) {
             this.x = -10;
         } else {
-            this.x += this.speed*dt;
+            this.x += this.speed * dt;
         }
 
         //collision detection 
-            //code adapted from MDN: https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection
+        //code adapted from MDN: https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection
 
-        if(player.x < this.x + this.width &&            
+        if (player.x < this.x + this.width &&
             player.x + player.width > this.x &&
-            player.y <this.y + this.height &&
-            player.y + player.height > this.y){
-                player.y = 400;
-            }
+            player.y < this.y + this.height &&
+            player.y + player.height > this.y) {
+            player.y = 400;
+        }
     }
 
     render() {
@@ -117,7 +117,7 @@ function resetGame() {
     player.y = 400;
 
     //reset enemies
-    allEnemies=[];
+    allEnemies = [];
     allEnemies.push(
         new Enemy(-175, 60, 200),
         new Enemy(-100, 150, 250),
