@@ -71,26 +71,13 @@ class Player extends Entity {
 
 const player = new Player;
 
-function resetGame() {
-    //reset player position
-    player.x = 200;
-    player.y = 400;
-
-    //reset enemies
-    allEnemies=[];
-    allEnemies.push(
-        new Enemy(-175, 60, 100),
-        new Enemy(-100, 150, 20),
-        new Enemy(-300, 230, 15)
-    );
-}
-
 class Enemy extends Entity {
     constructor(x, y, speed) {
         super();
         this.sprite += "enemy-bug.png";
         this.x = x;
         this.y = y;
+        this.speed=speed;
         this.height = 50;
         this.width = 75;
     }
@@ -100,7 +87,7 @@ class Enemy extends Entity {
         if (this.xBorder) {
             this.x = -10;
         } else {
-            this.x += dt * this.speed;
+            this.x += this.speed*dt;
         }
 
         //collision detection 
@@ -124,7 +111,19 @@ class Enemy extends Entity {
 // Place the player object in a variable called player
 let allEnemies = [];
 
+function resetGame() {
+    //reset player position
+    player.x = 200;
+    player.y = 400;
 
+    //reset enemies
+    allEnemies=[];
+    allEnemies.push(
+        new Enemy(-175, 60, 200),
+        new Enemy(-100, 150, 250),
+        new Enemy(-300, 230, 290)
+    );
+}
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function (e) {
