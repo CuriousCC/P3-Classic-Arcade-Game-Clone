@@ -1,4 +1,4 @@
-
+//I decided to create class Entity and subclasses to practice new knowledge
 class Entity {
     constructor() {
         this.sprite = 'images/';
@@ -39,10 +39,13 @@ class Player extends Entity {
 
     update(dt) {
         super.update();
-        // if(this.yBorder){
-        //     this.y = 400;
-        // }
-        //check for win/////////////////
+
+        //win condition
+        if(this.yBorder){
+            alert("win!");
+            resetPlayerPos();
+            // resetEnemies();
+        }
     }
 
     handleInput(keyPressed) {
@@ -53,10 +56,6 @@ class Player extends Entity {
             }
         } else if (keyPressed == 'up') {
             this.y = this.y -= 43;
-            if (this.y <= 10) {
-                this.x = 200;
-                this.y = 400;
-            }
         } else if (keyPressed == 'right') {
             this.x = this.x += 56;
             if (this.x >= 400) {
@@ -103,26 +102,29 @@ class Enemy extends Entity {
             player.x + player.width > this.x &&
             player.y <this.y + this.height &&
             player.y + player.height > this.y){
-                resetPlayerPos(player);
+                player.y = 400;
             }
     }
 
     render() {
         super.render();
     }
-
-
 }
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const enemy1 = new Enemy(-175, 60, 100);
-const enemy2 = new Enemy(-100, 150, 20);
-const enemy3 = new Enemy(-300, 230, 15);
-const allEnemies = [enemy1, enemy2, enemy3];
+let enemy1 = new Enemy(-175, 60, 100);
+let enemy2 = new Enemy(-100, 150, 20);
+let enemy3 = new Enemy(-300, 230, 15);
+let allEnemies = [enemy1, enemy2, enemy3];
 
-
+// function resetEnemies(){
+//     enemy1 = new Enemy(-135, 60, 100);
+//     enemy2 = new Enemy(-190, 150, 20);
+//     enemy3 = new Enemy(-80, 230, 15);
+//     allEnemies = [enemy1, enemy2, enemy3];
+// }
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

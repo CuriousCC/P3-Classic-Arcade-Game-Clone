@@ -68,7 +68,6 @@ var Engine = (function (global) {
         main();
     }
 
-
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how
      * you implement your collision detection (when two entities occupy the
@@ -80,9 +79,7 @@ var Engine = (function (global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
     }
-
 
     /* This is called by the update function and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
@@ -98,8 +95,6 @@ var Engine = (function (global) {
         player.update();
 
     }
-
-
 
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
@@ -167,7 +162,6 @@ var Engine = (function (global) {
      */
     function reset() {
         // noop
-        this.win = false;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
